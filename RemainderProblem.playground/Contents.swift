@@ -56,7 +56,7 @@ for i in (0...maxTrial){//start
 
 print("possible solutions=\(Solution)")
 
-//check solution
+//check solutions
 
 
 

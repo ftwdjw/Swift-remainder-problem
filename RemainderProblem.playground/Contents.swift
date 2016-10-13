@@ -10,18 +10,23 @@ import UIKit
 //first list all variables
 
 var Solution = [Int]()//used to store the solutions
-var Save = [Bool]()//used to store all the Boolean checks
 let Divisor = [3,5,7] //all the divisors
 let Remainder = [2,3,2] //all the remainders
+var saveCount = 0 //used to check all the remainders of the trails work
+let maxTrial = 700 //maxium of trial number
+
+assert(Divisor.count == Remainder.count,
+    "the number of divisors must equal the number of remainders")
+
 
 
 //interate i and test for solution
 
-for i in (0...700){//start
+for i in (0...maxTrial){//start
  
+    saveCount=0 //reset save count for the next trial
     
     // assume all the factors are not true and prove them true in each case
-    Save=[false,false,false]
     
     //interate with index all the divisors and remainders
     
@@ -31,14 +36,15 @@ for i in (0...700){//start
             
             //% means mod (remainder) or modulus as in 55 mod 5 = 0
             
-         Save[index]=true
+                saveCount += 1
+            
     }//end index
     
     
  
-    if (Save[0] && Save[1] && Save[2]) == true {//start check
+    if (saveCount) == Remainder.count {//start check
         
-        Solution.append(i)//if all 3 checks are true add to solutions
+        Solution.append(i)//if all checks are true add to solutions
         
         print("\(i) is a possible solution")//print out solutions
         
@@ -52,18 +58,23 @@ print("possible solutions=\(Solution)")
 
 //check solution
 
+
+
 for i in (0..<Solution.count){//start
     
+    saveCount=0 //reset saveCount for the next solution check
+    
     // assume all the factors are not true and prove them true in each case
-    Save=[false,false,false]
     
         for index in (0..<Remainder.count) {//start index
     if Solution[i]%Divisor[index] == Remainder[index]{//start  check
-           Save[index]=true
+        
+            saveCount += 1
+        
            }//end check
         }//end index
     
-    if (Save[0] && Save[1] && Save[2]) == true {//start check1
+    if (saveCount) == Remainder.count {//start check1
         
         print("\(Solution[i]) checks")//print out solutions
         
